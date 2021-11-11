@@ -30,21 +30,40 @@ class Program {
     }
     
     static void Start() {
-        try {
+        try
+        {
             //var
             int mode = 0;
             string t;
             char[] a;
-            char c;
+            string c = "";
+            char[] temp = new char[5]; 
+            string[][] sa = Conv(temp, "", 0);
 
             //func
             Console.WriteLine("Console Text");
+            Console.Write("Enter mode: ");
+            mode = int.Parse(Console.ReadLine());
             Console.Write("Enter your text: ");
             t = Console.ReadLine();
             a = t.ToCharArray();
-            Console.Write("Enter character: ");
-            c = char.Parse(Console.ReadLine());
-            string[][] sa = Convert(a, c);
+            switch (mode)
+            {
+                case 1:
+                    Console.Write("Enter character: ");
+                    c = Convert.ToString(char.Parse(Console.ReadLine()));
+                    sa = Conv(a, c, 1);
+                    break;
+                case 2:
+                    Console.Write("Enter string: ");
+                    c = Console.ReadLine();
+                    sa = Conv(a, c, 2);
+                    break;
+                case 3:
+                    sa = Conv(a, "", 3);
+                    break;
+                default: goto case 1;
+            }
             StringBuilder sb = new();
             Console.WriteLine();
             for (int i = 0; i < 7; i++) {
@@ -53,7 +72,7 @@ class Program {
                 }
                 sb.AppendLine();
             }
-            ToFile(t, sb, c, mode);
+            ToFile(t, sb, Convert.ToString(c), mode);
         }
         catch(Exception) {
             Console.Clear();
@@ -62,13 +81,25 @@ class Program {
         }
     }
 
-    static void ToFile(string t, StringBuilder sb, char c, int mode)
+    static void ToFile(string t, StringBuilder sb, string c, int mode)
     {
         if (!Directory.Exists(@"extract")) Directory.CreateDirectory(@"extract");
-        string filepath = DateTime.Now.ToString().Replace('/', '-').Replace(' ', '-').Replace(':', '-');
+        string datetimenow = DateTime.Now.ToString();
+        string filepath = datetimenow.Replace('/', '-').Replace(' ', '-').Replace(':', '-');
         Directory.CreateDirectory(@$"extract\{filepath}");
         File.Create(@$"extract\{filepath}\{filepath}.txt").Close();
-        File.AppendAllText(@$"extract\{filepath}\{filepath}.txt", $"Text input: {t}\nChar input: {c}\n\n{sb.ToString()}");
+        switch (mode)
+        {
+            case 1:
+                File.AppendAllText(@$"extract\{filepath}\{filepath}.txt", $"Console Text by domcvn\nFile creation time: {datetimenow}\nMode: {mode}\nText input: {t}\nChar input: {c}\n\n{sb.ToString()}");
+                break;
+            case 2:
+                File.AppendAllText(@$"extract\{filepath}\{filepath}.txt", $"Console Text by domcvn\nFile creation time: {datetimenow}\nMode: {mode}\nText input: {t}\nString input: {c}\n\n{sb.ToString()}");
+                break;
+            case 3:
+                File.AppendAllText(@$"extract\{filepath}\{filepath}.txt", $"Console Text by domcvn\nFile creation time: {datetimenow}\nMode: {mode}\nText input: {t}\n\n{sb.ToString()}");
+                break;
+        }
         Console.Clear();
         System.Diagnostics.Process.Start("notepad.exe", @$"extract\{filepath}\{filepath}.txt");
         Console.WriteLine("Completed! Returning to main menu in 3 seconds...");
@@ -77,15 +108,17 @@ class Program {
         Main();
     }
 
-    static string[][] Convert(char[] a, char c) {
+    static string[][] Conv(char[] a, string c, int mode) {
         //array initialize
         string[][] convert = new string[a.Length][];
         for (int i = 0; i < a.Length; i++) {
             convert[i] = new string[7];
         }
+        Random r = new Random();
 
         //add char
         for(int i = 0; i < a.Length; i++) {
+            if (mode == 3) c = Convert.ToString((char)(r.Next(33, 126)));
             switch(a[i]) {
                 #region a-z
                 #region a
