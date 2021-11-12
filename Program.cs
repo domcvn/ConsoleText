@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Text;
 using System.IO;
+using System.Text;
 
 class Program {
     static void Main() {
@@ -56,7 +56,8 @@ class Program {
                     break;
                 case 2:
                     Console.Write("Enter string: ");
-                    c = Console.ReadLine();
+                    c = Console.ReadLine().Replace(" ", string.Empty);
+                    if (c.Length <= 1) throw new Exception();
                     sa = Conv(a, c, 2);
                     break;
                 case 3:
@@ -115,7 +116,12 @@ class Program {
             convert[i] = new string[7];
         }
         Random r = new Random();
-
+        string s = "";
+        if (mode == 3) c = " ";
+        for (int i = 0; i < c.Length; i++)
+        {
+            s += " ";
+        }
         //add char
         for(int i = 0; i < a.Length; i++) {
             if (mode == 3) c = Convert.ToString((char)(r.Next(33, 126)));
@@ -123,101 +129,101 @@ class Program {
                 #region a-z
                 #region a
                 case 'a': 
-                    convert[i][0] = $"    "; 
-                    convert[i][1] = $"    ";  
-                    convert[i][2] = $" {c}{c} ";      //  ##
-                    convert[i][3] = $"{c}  {c}";      // #  #
-                    convert[i][4] = $" {c}{c}{c}";    //  ###
-                    convert[i][5] = $"    ";
-                    convert[i][6] = $"    ";
+                    convert[i][0] = $"{s}{s}{s}{s}"; 
+                    convert[i][1] = $"{s}{s}{s}{s}";  
+                    convert[i][2] = $"{s}{c}{c}{s}";      //  ##
+                    convert[i][3] = $"{c}{s}{s}{c}";      // #  #
+                    convert[i][4] = $"{s}{c}{c}{c}";      //  ###
+                    convert[i][5] = $"{s}{s}{s}{s}";
+                    convert[i][6] = $"{s}{s}{s}{s}";
                     break;
                 #endregion
                 #region b
                 case 'b': 
-                    convert[i][0] = $"    ";       
-                    convert[i][1] = $"{c}   ";        // #
-                    convert[i][2] = $"{c}{c}{c} ";    // ###
-                    convert[i][3] = $"{c}  {c}";      // #  #
-                    convert[i][4] = $" {c}{c} ";      //  ##
-                    convert[i][5] = $"    ";
-                    convert[i][6] = $"    ";
+                    convert[i][0] = $"{s}{s}{s}{s}";       
+                    convert[i][1] = $"{c}{s}{s}{s}";       // #
+                    convert[i][2] = $"{c}{c}{c}{s}";       // ###
+                    convert[i][3] = $"{c}{s}{s}{c}";       // #  #
+                    convert[i][4] = $"{s}{c}{c}{s}";       //  ##
+                    convert[i][5] = $"{s}{s}{s}{s}";
+                    convert[i][6] = $"{s}{s}{s}{s}";
                     break;
                 #endregion
                 #region c
                 case 'c':
-                    convert[i][0] = $"   ";
-                    convert[i][1] = $"   ";
-                    convert[i][2] = $" {c}{c}";       //  ##
-                    convert[i][3] = $"{c}  ";         // #
-                    convert[i][4] = $" {c}{c}";       //  ##
-                    convert[i][5] = $"   ";
-                    convert[i][6] = $"   ";
+                    convert[i][0] = $"{s}{s}{s}";
+                    convert[i][1] = $"{s}{s}{s}";
+                    convert[i][2] = $"{s}{c}{c}";         //  ##
+                    convert[i][3] = $"{c}{s}{s}";         // #
+                    convert[i][4] = $"{s}{c}{c}";         //  ##
+                    convert[i][5] = $"{s}{s}{s}";
+                    convert[i][6] = $"{s}{s}{s}";
                     break;
                 #endregion
                 #region d
                 case 'd':
-                    convert[i][0] = $"    ";       
-                    convert[i][1] = $"   {c}";        //    #
-                    convert[i][2] = $" {c}{c}{c}";    //  ###
-                    convert[i][3] = $"{c}  {c}";      // #  #
-                    convert[i][4] = $" {c}{c} ";      //  ##
-                    convert[i][5] = $"    ";
-                    convert[i][6] = $"    ";
+                    convert[i][0] = $"{s}{s}{s}{s}";       
+                    convert[i][1] = $"{s}{s}{s}{c}";        //    #
+                    convert[i][2] = $"{s}{c}{c}{c}";        //  ###
+                    convert[i][3] = $"{c}{s}{s}{c}";        // #  #
+                    convert[i][4] = $"{s}{c}{c}{s}";        //  ##
+                    convert[i][5] = $"{s}{s}{s}{s}";
+                    convert[i][6] = $"{s}{s}{s}{s}";
                     break;
                 #endregion
                 #region e
                 case 'e':
-                    convert[i][0] = $"    ";
-                    convert[i][1] = $"    ";      
-                    convert[i][2] = $" {c}{c}{c}";    //  ###
-                    convert[i][3] = $"{c}{c}{c} ";    // ###
-                    convert[i][4] = $" {c}{c}{c}";    //  ###
-                    convert[i][5] = $"    ";
-                    convert[i][6] = $"    ";
+                    convert[i][0] = $"{s}{s}{s}{s}";
+                    convert[i][1] = $"{s}{s}{s}{s}";      
+                    convert[i][2] = $"{s}{c}{c}{c}";    //  ###
+                    convert[i][3] = $"{c}{c}{c}{s}";    // ###
+                    convert[i][4] = $"{s}{c}{c}{c}";    //  ###
+                    convert[i][5] = $"{s}{s}{s}{s}";
+                    convert[i][6] = $"{s}{s}{s}{s}";
                     break;
                 #endregion
                 #region f
                 case 'f':
-                    convert[i][0] = $"   ";
-                    convert[i][1] = $" {c}{c}";      //  ##
-                    convert[i][2] = $"{c}  ";        // #
-                    convert[i][3] = $"{c}{c}{c}";    // ###
-                    convert[i][4] = $"{c}  ";        // #
-                    convert[i][5] = $"{c}  ";        // #
-                    convert[i][6] = $"   ";
+                    convert[i][0] = $"{s}{s}{s}";
+                    convert[i][1] = $"{s}{c}{c}";        //  ##
+                    convert[i][2] = $"{c}{s}{s}";        // #
+                    convert[i][3] = $"{c}{c}{c}";        // ###
+                    convert[i][4] = $"{c}{s}{s}";        // #
+                    convert[i][5] = $"{c}{s}{s}";        // #
+                    convert[i][6] = $"{s}{s}{s}";
                     break;
                 #endregion
                 #region g
                 case 'g': 
-                    convert[i][0] = $"    ";
-                    convert[i][1] = $"    ";
-                    convert[i][2] = $" {c}{c}{c}";   //  ###
-                    convert[i][3] = $"{c}  {c}";     // #  # 
-                    convert[i][4] = $" {c}{c}{c}";   //  ###
-                    convert[i][5] = $"   {c}";       //    #
-                    convert[i][6] = $" {c}{c} ";     //  ##
+                    convert[i][0] = $"{s}{s}{s}{s}";
+                    convert[i][1] = $"{s}{s}{s}{s}";
+                    convert[i][2] = $"{s}{c}{c}{c}";       //  ###
+                    convert[i][3] = $"{c}{s}{s}{c}";       // #  # 
+                    convert[i][4] = $"{s}{c}{c}{c}";       //  ###
+                    convert[i][5] = $"{s}{s}{s}{c}";       //    #
+                    convert[i][6] = $"{s}{c}{c}{s}";       //  ##
                     break;
                 #endregion
                 #region h
                 case 'h':
-                    convert[i][0] = $"    ";      
-                    convert[i][1] = $"{c}   ";       // #
-                    convert[i][2] = $"{c}{c}{c} ";   // ###
-                    convert[i][3] = $"{c}  {c}";     // #  #
-                    convert[i][4] = $"{c}  {c}";     // #  #
-                    convert[i][5] = $"    ";
-                    convert[i][6] = $"    ";
+                    convert[i][0] = $"{s}{s}{s}{s}";      
+                    convert[i][1] = $"{c}{s}{s}{s}";       // #
+                    convert[i][2] = $"{c}{c}{c}{s}";       // ###
+                    convert[i][3] = $"{c}{s}{s}{c}";       // #  #
+                    convert[i][4] = $"{c}{s}{s}{c}";       // #  #
+                    convert[i][5] = $"{s}{s}{s}{s}";
+                    convert[i][6] = $"{s}{s}{s}{s}";
                     break;
                 #endregion
                 #region i
                 case 'i':
                     convert[i][0] = $"{c}";          // #
-                    convert[i][1] = $" ";            //
+                    convert[i][1] = $"{s}";          //
                     convert[i][2] = $"{c}";          // #
                     convert[i][3] = $"{c}";          // #
                     convert[i][4] = $"{c}";          // #
-                    convert[i][5] = $" ";
-                    convert[i][6] = $" ";
+                    convert[i][5] = $"{s}";
+                    convert[i][6] = $"{s}";
                     break;
                 #endregion
                 #region j
@@ -837,7 +843,7 @@ How To Use section is still under development! Press any key to go back to main 
     static void About() {
         Console.Clear();
         Console.WriteLine(@"Console Text
-Version: v0.2 BETA
+Version: v0.3 BETA
 Made by domcvn
 
 Press any key to go back to main menu...");
